@@ -1,10 +1,19 @@
 <?php
 require  '../../../includes/header.php';
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+</head>
+<body>
+    <div class="form-container">
 <h2>Book Appointment</h2>
 
 <?php if(isset($error)): ?>
-<p><?php echo htmlspecialchars($error) ?></p>
+<p class="error"><?php echo htmlspecialchars($error) ?></p>
 <?php endif; ?>
 
 <form method="POST">
@@ -27,9 +36,12 @@ require  '../../../includes/header.php';
     <label>End Time:</label><br>
     <input type="time" name="end" required><br><br>
 
-    <button>Book Appointment</button>
+    <button class="btn">Book Appointment</button>
+    <a href="appointmentController.php" class="btn">Back</a>
 </form>
-<a href="appointmentController.php">Back</a>
+</div>
+</body>
+</html>
 <?php
 echo '<script src="' . htmlspecialchars(BASE_URL) . '/assets/js/script.js"></script>';
 require '../../../includes/footer.php';

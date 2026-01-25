@@ -1,3 +1,10 @@
+function toggleNav() {
+  const nav = document.getElementById("nav-menu");
+  if (nav) {
+    nav.classList.toggle("active");
+  }
+}
+
 async function updateTime() {
   const doctorEl = document.getElementById("doctor");
   const dateEl = document.querySelector("input[name='date']");

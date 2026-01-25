@@ -1,21 +1,40 @@
 <?php
 require '../../../includes/header.php';
 ?>
-<h2>Search Doctors</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Doctors</title>
+</head>
+<body>
+    <div class="list-container">
+<h2 class="list-title">Search Doctors</h2>
 
-<form method="GET" action="doctorSearchController.php">
-    <label>Search by name:</label>
-    <input type="text" name="q" value="<?php echo htmlspecialchars($_GET['q'] ?? '') ?>" placeholder="Doctor name">
-    <button type="submit">Search</button>
+<form method="GET" action="doctorSearchController.php" class="search-form">
+    <input type="text" name="q" value="<?php echo htmlspecialchars($_GET['q'] ?? '') ?>" placeholder="Search by doctor name">
+    <button type="submit" class="btn">Search</button>
 </form>
-<?php if (!empty($doctors)): ?>
-<ul>
-    <?php foreach ($doctors as $doc): ?>
-        <li><?php echo htmlspecialchars($doc['name']) ?> (<?php echo htmlspecialchars($doc['specialization'] ?? '') ?>)</li>
-    <?php endforeach; ?>
-</ul>
-<?php else: ?>
-<p>No doctors found.</p>
-<?php endif; ?>
 
+<?php if (!empty($doctors)): ?>
+<table class="data-table">
+    <tr>
+        <th>Name</th>
+        <th>Specialization</th>
+    </tr>
+    <?php foreach ($doctors as $doc): ?>
+    <tr>
+        <td><?php echo htmlspecialchars($doc['name']) ?></td>
+        <td><?php echo htmlspecialchars($doc['specialization'] ?? '') ?></td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+<?php else: ?>
+<p class="no-results">No doctors found.</p>
+<?php endif; ?>
+</div>
+
+</body>
+</html>
 <?php require '../../../includes/footer.php'; ?>

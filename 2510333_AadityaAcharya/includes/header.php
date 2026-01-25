@@ -5,13 +5,20 @@ define('BASE_URL', '/2510333_AadityaAcharya');
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="<?php echo BASE_URL ?>/assets/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="<?php echo BASE_URL ?>/assets/css/style.css">
+<script src="<?php echo BASE_URL ?>/assets/js/script.js"></script>
 </head>
 <body>
 
 <header>
     <h2>Clinic Appointment System</h2>
-    <nav>
+    <button class="hamburger" onclick="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <nav id="nav-menu">
         <?php if(isset($_SESSION['role'])): ?>
 
             <?php if($_SESSION['role'] === 'admin'): ?>

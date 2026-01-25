@@ -9,9 +9,10 @@ require  '../../../includes/header.php';
     <title>Admin Dashboard</title>
 </head>
 <body>
-    <h2>Admin Dashboard</h2>
+    <div class="dashboard-container">
+    <h2 class="dashboard-title">Admin Dashboard</h2>
 
-<table border="1" cellpadding="6" cellspacing="0">
+    <table class="dashboard-table">
     <tr>
         <th>Metric</th>
         <th>Count</th>
@@ -29,6 +30,7 @@ require  '../../../includes/header.php';
         <td><?php echo htmlspecialchars((string)$appointmentCount) ?></td>
     </tr>
 </table>
+</div>
 </body>
 </html>
 

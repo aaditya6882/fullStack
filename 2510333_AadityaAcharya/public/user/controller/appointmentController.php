@@ -24,6 +24,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'availability') {
 }
 
 if (isset($_GET['action']) && $_GET['action']=="book") {
+    $doctors = getDoctors();
     if ($_POST) {
         $doctor = $_POST['doctor'];
         $date = $_POST['date'];

@@ -46,7 +46,7 @@ if ($_POST) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login - Clinic Appointment System</title>
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 <div class="login-container">
@@ -60,11 +60,9 @@ if ($_POST) {
         <form method="POST" class="form-card">
             <input type="hidden" name="_csrf" value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>">
             <div class="form-group">
-                <label>Username / Email</label>
                 <input type="text" name="username" placeholder="Enter username or email" required>
             </div>
             <div class="form-group">
-                <label>Password</label>
                 <input type="password" name="password" placeholder="Enter password" required>
             </div>
             <button type="submit" class="btn-primary">Login</button>

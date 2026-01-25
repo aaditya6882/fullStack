@@ -9,15 +9,17 @@ require  '../../../includes/header.php';
     <title>Add Doctor</title>
 </head>
 <body>
+<div class="form-container">
 <h2>Add Doctor</h2>
 <form method="POST">
     <input type="text" name="name" placeholder="Name" required><br><br>
     <input type="text" name="specialization" placeholder="Specialization"><br><br>
     <input type="email" name="email" placeholder="Email" required><br><br>
     <input type="text" name="phone" placeholder="Phone"><br><br>
-    <button>Add Doctor</button>
+    <button class="btn">Add Doctor</button>
+    <a href="doctorController.php" class="btn">Back</a>
 </form>
-<a href="doctorController.php">Back</a> 
+</div>
 </body>
 </html>
 <?php
