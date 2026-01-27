@@ -29,7 +29,7 @@ define('BASE_URL', '/2510333_AadityaAcharya');
 
             <?php if($_SESSION['role'] === 'patient'): ?>
                 <a href="<?php echo htmlspecialchars(BASE_URL) ?>/public/user/controller/appointmentController.php">My Appointments</a>
-                <a href="<?php echo htmlspecialchars(BASE_URL) ?>/public/user/controller/doctorSearchController.php">Search Doctors</a>
+                <a href="<?php echo htmlspecialchars(BASE_URL) ?>/public/user/controller/doctorSearchController.php">Doctors</a>
             <?php endif; ?>
 
             <a href="<?php echo htmlspecialchars(BASE_URL) ?>/public/logout.php">Logout</a>

@@ -14,24 +14,39 @@ if (!isset($_GET['action'])) {
 }
 
 if (isset($_GET['action']) && $_GET['action']=="add") {
+    $error = "";
     if ($_POST) {
-        $email = $_POST['email'] ;
-        $password = $_POST['password'] ;
-        if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            die("Invalid email address");
+        try {
+            $name = isset($_POST['name']) ? trim($_POST['name']) : '';
+            $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+            $phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
+            $password = isset($_POST['password']) ? $_POST['password'] : '';
+
+            if (empty($name)) {
+                throw new Exception("Name is required.");
+            }
+
+            if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                throw new Exception("Invalid email address.");
+            }
+
+            $passwordPattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&()])[A-Za-z\d!@#$%^&()]{8,28}$/';
+            if (empty($password) || !preg_match($passwordPattern, $password)) {
+                throw new Exception("Password must be 8-28 characters and include uppercase, lowercase, number, and special character.");
+            }
+
+            addPatient($name, $email, $phone, password_hash($password, PASSWORD_DEFAULT));
+            header("Location: patientController.php");
+            exit;
+        } catch (PDOException $e) {
+            if ($e->getCode() == 23000) {
+                $error = "Email already exists. Please use a different email.";
+            } else {
+                $error = "A database error occurred. Please try again.";
+            }
+        } catch (Exception $e) {
+            $error = $e->getMessage();
         }
-        $passwordPattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&()])[A-Za-z\d!@#$%^&()]{8,28}$/';
-        if (empty($password) || !preg_match($passwordPattern, $password)) {
-            die("Password must be 8-28 characters and include uppercase, lowercase, number, and special character");
-        }
-        addPatient(
-            $_POST['name'],
-            $email,
-            $_POST['phone'],
-            password_hash($password, PASSWORD_DEFAULT)
-        );
-        header("Location: patientController.php");
-        exit;
     }
     require '../view/addPatient.php';
 }

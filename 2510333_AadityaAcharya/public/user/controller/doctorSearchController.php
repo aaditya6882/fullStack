@@ -9,10 +9,10 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient') {
 }
 
 $q = isset($_GET['q']) ? trim($_GET['q']) : '';
-$doctors = [];
+$doctors = getDoctors();
 if ($q !== '') {
     $doctors = searchDoctorsByName($q);
 } else {
-    $doctors = [];
+    $doctors = getDoctors();
 }
 require "../view/searchDoctors.php";

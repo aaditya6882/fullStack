@@ -10,27 +10,37 @@ require  '../../../includes/header.php';
 </head>
 <body>
     <div class="dashboard-container">
-    <h2 class="dashboard-title">Admin Dashboard</h2>
+        <h2 class="dashboard-title">Admin Dashboard</h2>
 
-    <table class="dashboard-table">
-    <tr>
-        <th>Metric</th>
-        <th>Count</th>
-    </tr>
-    <tr>
-        <td>Total Doctors</td>
-        <td><?php echo htmlspecialchars((string)$doctorCount) ?></td>
-    </tr>
-    <tr>
-        <td>Total Patients</td>
-        <td><?php echo htmlspecialchars((string)$patientCount) ?></td>
-    </tr>
-    <tr>
-        <td>Total Appointments</td>
-        <td><?php echo htmlspecialchars((string)$appointmentCount) ?></td>
-    </tr>
-</table>
-</div>
+        <div class="dashboard-cards">
+            <div class="dashboard-card card-doctors">
+                <h3 class="card-label">Total Doctors</h3>
+                <p class="card-count"><?php echo htmlspecialchars((string)$doctorCount) ?></p>
+            </div>
+
+            <div class="dashboard-card card-patients">
+                <h3 class="card-label">Total Patients</h3>
+                <p class="card-count"><?php echo htmlspecialchars((string)$patientCount) ?></p>
+            </div>
+
+            <div class="dashboard-card card-appointments">
+                <h3 class="card-label">Total Appointments</h3>
+                <p class="card-count"><?php echo htmlspecialchars((string)$appointmentCount) ?></p>
+            </div>
+        </div>
+
+        <div class="top-doctors-section">
+            <h3 class="section-title">Top Doctors</h3>
+            <ul class="doctor-list">
+                <?php foreach ($topDoctors as $doctor): ?>
+                    <li class="doctor-item">
+                        <span class="doctor-name"><?php echo htmlspecialchars($doctor['name']); ?></span>
+                        <span class="doctor-specialization"><?php echo htmlspecialchars($doctor['specialization']); ?></span>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>
 

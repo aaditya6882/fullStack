@@ -2,41 +2,72 @@
 require "../config/db.php";
 session_start();
 
+$error = "";
+$success = "";
+
 if (empty($_SESSION['csrf_token']) || !is_string($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
-if ($_POST) {
-    $postedToken = isset($_POST['_csrf']) && is_string($_POST['_csrf']) ? $_POST['_csrf'] : null;
-    if (!isset($_SESSION['csrf_token']) || $postedToken === null || !hash_equals($_SESSION['csrf_token'], $postedToken)) {
-        $error = "Invalid request";
-    } else {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+        $postedToken = isset($_POST['_csrf']) && is_string($_POST['_csrf']) ? $_POST['_csrf'] : null;
+        if (!isset($_SESSION['csrf_token']) || $postedToken === null || !hash_equals($_SESSION['csrf_token'], $postedToken)) {
+            throw new Exception("Invalid request. Please refresh the page and try again.");
+        }
 
-    $stmt = $conn->prepare("SELECT * FROM admins WHERE username=?");
-    $stmt->execute([$_POST['username']]);
-    $admin = $stmt->fetch();
+        $username = isset($_POST['username']) ? trim($_POST['username']) : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
 
-    if ($admin && password_verify($_POST['password'], $admin['password'])) {
-        $_SESSION['role'] = 'admin';
-        session_regenerate_id(true);
-        $_SESSION['admin_id'] = $admin['admin_id'];
-        header("Location: admin/controller/dashboardController.php");
-        exit;
-    }
+        if (empty($username)) {
+            throw new Exception("Username or email is required.");
+        }
 
-    $stmt = $conn->prepare("SELECT * FROM patients WHERE email=?");
-    $stmt->execute([$_POST['username']]);
-    $patient = $stmt->fetch();
+        if (empty($password)) {
+            throw new Exception("Password is required.");
+        }
 
-    if ($patient && password_verify($_POST['password'], $patient['password'])) {
-        $_SESSION['role'] = 'patient';
-        session_regenerate_id(true);
-        $_SESSION['patient_id'] = $patient['patient_id'];
-        header("Location: user/controller/appointmentController.php");
-        exit;
-    }
+        if (!isset($conn) || $conn === null) {
+            throw new Exception("Database connection failed. Please try again later.");
+        }
 
-    $error = "Invalid username or password";
+        $stmt = $conn->prepare("SELECT * FROM admins WHERE username = ?");
+        if (!$stmt) {
+            throw new Exception("An error occurred. Please try again later.");
+        }
+        $stmt->execute([$username]);
+        $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($admin && password_verify($password, $admin['password'])) {
+            $_SESSION['role'] = 'admin';
+            session_regenerate_id(true);
+            $_SESSION['admin_id'] = $admin['admin_id'];
+            header("Location: admin/controller/dashboardController.php");
+            exit;
+        }
+
+        $stmt = $conn->prepare("SELECT * FROM patients WHERE email = ?");
+        if (!$stmt) {
+            throw new Exception("An error occurred. Please try again later.");
+        }
+        $stmt->execute([$username]);
+        $patient = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($patient && password_verify($password, $patient['password'])) {
+            $_SESSION['role'] = 'patient';
+            session_regenerate_id(true);
+            $_SESSION['patient_id'] = $patient['patient_id'];
+            header("Location: user/controller/appointmentController.php");
+            exit;
+        }
+
+        throw new Exception("Invalid username or password. Please check your credentials.");
+
+    } catch (PDOException $e) {
+        error_log("Login Database Error: " . $e->getMessage());
+        $error = "A database error occurred. Please try again later.";
+    } catch (Exception $e) {
+        $error = $e->getMessage();
     }
 }
 ?>
@@ -53,17 +84,23 @@ if ($_POST) {
     <div class="login-card">
         <h2>Clinic Appointment System</h2>
 
-        <?php if(isset($error)): ?>
-            <div class="error"><?php echo htmlspecialchars($error); ?></div>
+        <?php if(!empty($error)): ?>
+            <div class="error" role="alert">
+                <strong>Error:</strong> <?php echo htmlspecialchars($error); ?>
+            </div>
         <?php endif; ?>
 
-        <form method="POST" class="form-card">
+        <form method="POST" class="form-card" >
             <input type="hidden" name="_csrf" value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>">
             <div class="form-group">
-                <input type="text" name="username" placeholder="Enter username or email" required>
+                <label for="username">Username or Email:</label>
+                <input type="text" id="username" name="username" placeholder="Enter username or email" 
+                       required >
             </div>
             <div class="form-group">
-                <input type="password" name="password" placeholder="Enter password" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" 
+                       required>
             </div>
             <button type="submit" class="btn-primary">Login</button>
         </form>

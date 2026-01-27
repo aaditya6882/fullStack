@@ -11,13 +11,17 @@ require '../../../includes/header.php';
 <body>
     <div class="form-container">
     <h2>Add Patient</h2>
+    <?php if(!empty($error)): ?>
+        <div class="error" role="alert">
+            <strong>Error:</strong> <?php echo htmlspecialchars($error); ?>
+        </div>
+    <?php endif; ?>
     <form method="POST">
     <input type="text" name="name" placeholder="Name" required><br><br>
     <input type="email" name="email" placeholder="Email" required><br><br>
     <input type="text" name="phone" placeholder="Phone"><br><br>
     <input type="password" name="password" placeholder="Password" required><br><br>
     <button class="btn">Add Patient</button>
-    <a href="patientController.php" class="btn">Back</a>
 </form>
 </div>
 </body>

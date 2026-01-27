@@ -6,11 +6,11 @@ require '../../../includes/header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Doctors</title>
+    <title>Doctors</title>
 </head>
 <body>
     <div class="list-container">
-<h2 class="list-title">Search Doctors</h2>
+<h2 class="list-title">Doctors</h2>
 
 <form method="GET" action="doctorSearchController.php" class="search-form">
     <input type="text" name="q" value="<?php echo htmlspecialchars($_GET['q'] ?? '') ?>" placeholder="Search by doctor name">

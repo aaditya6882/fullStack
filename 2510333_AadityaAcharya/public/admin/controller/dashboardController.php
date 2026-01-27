@@ -11,5 +11,6 @@ $patientCount = $conn->query("SELECT COUNT(*) FROM patients")->fetchColumn();
 $doctorCount = $conn->query("SELECT COUNT(*) FROM doctors")->fetchColumn();
 $appointmentCount = $conn->query("SELECT COUNT(*) FROM appointments")->fetchColumn();
 
+$topDoctors = $conn->query("SELECT name, specialization FROM doctors LIMIT 10")->fetchAll(PDO::FETCH_ASSOC);
 
 require "../view/dashboard.php";

@@ -37,7 +37,6 @@ require  '../../../includes/header.php';
     <input type="time" name="end" required><br><br>
 
     <button class="btn">Book Appointment</button>
-    <a href="appointmentController.php" class="btn">Back</a>
 </form>
 </div>
 </body>
