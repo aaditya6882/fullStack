@@ -28,8 +28,6 @@ require '../../../includes/header.php';
         $appointmentEndTimestamp = strtotime($app['appointment_date'] . ' ' . $app['end_time']);
         $currentTimestamp = time();
         $isCompleted = ($currentTimestamp > $appointmentEndTimestamp);
-        // Debug - remove after testing
-        echo "<!-- Debug: End=" . $app['appointment_date'] . ' ' . $app['end_time'] . " | EndTS=" . $appointmentEndTimestamp . " | NowTS=" . $currentTimestamp . " | Completed=" . ($isCompleted ? 'YES' : 'NO') . " -->";
     ?>
     <tr>
         <td><?php echo htmlspecialchars($app['appointment_id']) ?></td>
