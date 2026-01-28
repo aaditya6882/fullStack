@@ -21,17 +21,33 @@ require '../../../includes/header.php';
         <th>Date</th>
         <th>Start Time</th>
         <th>End Time</th>
+        <th>Status</th>
         <th>Actions</th>
     </tr>
-    <?php foreach($appointments as $app): ?>
+    <?php foreach($appointments as $app): 
+        $appointmentEndTimestamp = strtotime($app['appointment_date'] . ' ' . $app['end_time']);
+        $currentTimestamp = time();
+        $isCompleted = ($currentTimestamp > $appointmentEndTimestamp);
+        // Debug - remove after testing
+        echo "<!-- Debug: End=" . $app['appointment_date'] . ' ' . $app['end_time'] . " | EndTS=" . $appointmentEndTimestamp . " | NowTS=" . $currentTimestamp . " | Completed=" . ($isCompleted ? 'YES' : 'NO') . " -->";
+    ?>
     <tr>
         <td><?php echo htmlspecialchars($app['appointment_id']) ?></td>
         <td><?php echo htmlspecialchars($app['doctor']) ?></td>
         <td><?php echo htmlspecialchars($app['appointment_date']) ?></td>
         <td><?php echo htmlspecialchars($app['start_time']) ?></td>
         <td><?php echo htmlspecialchars($app['end_time']) ?></td>
+        <td>
+            <?php if ($isCompleted): ?>
+                <span class="status-completed">Completed</span>
+            <?php else: ?>
+                <span class="status-upcoming">Upcoming</span>
+            <?php endif; ?>
+        </td>
         <td class="actions">
-            <a class="btn-delete" href="appointmentController.php?action=delete&id=<?php echo htmlspecialchars($app['appointment_id']) ?>" onclick="return confirm('Cancel appointment?')">Cancel</a>
+            <?php if (!$isCompleted): ?>
+                <a class="btn-delete" href="appointmentController.php?action=delete&id=<?php echo htmlspecialchars($app['appointment_id']) ?>" onclick="return confirm('Cancel appointment?')">Cancel</a>
+            <?php endif; ?>
         </td>
     </tr>
     <?php endforeach; ?>

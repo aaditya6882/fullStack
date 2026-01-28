@@ -1,5 +1,5 @@
 <?php
-session_start();
+require '../../../includes/session.php';
 
 require '../model/doctorModel.php';
 

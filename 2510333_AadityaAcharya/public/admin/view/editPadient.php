@@ -7,13 +7,21 @@
     <title>Edit Patient</title>
 </head>
 <body>
+    <div class="form-container">
     <h2>Edit Patient</h2>
+    <?php if(!empty($error)): ?>
+        <div class="error" role="alert">
+            <strong>Error:</strong> <?php echo htmlspecialchars($error); ?>
+        </div>
+    <?php endif; ?>
     <form method="POST">
-    <input type="text" name="name" value="<?php echo htmlspecialchars($patient['name'])?>" required><br><br>
-    <input type="email" name="email" value="<?php echo htmlspecialchars($patient['email'])?>" required><br><br>
-    <input type="text" name="phone" value="<?php echo htmlspecialchars($patient['phone'])?>"><br><br>
-    <button>Update</button>
+    <input type="text" name="name" value="<?php echo htmlspecialchars($patient['name'])?>" placeholder="Name" required><br><br>
+    <input type="email" name="email" value="<?php echo htmlspecialchars($patient['email'])?>" placeholder="Email" required><br><br>
+    <input type="text" name="phone" value="<?php echo htmlspecialchars($patient['phone'])?>" placeholder="Phone"><br><br>
+    <button class="btn">Update</button>
     </form>
+    </div>
+    <a href="patientController.php" class="btn" style="margin: 15px;">Back</a>
 </body>
 </html>
 <?php require "../../../includes/footer.php"; ?>

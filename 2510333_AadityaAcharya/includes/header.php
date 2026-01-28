@@ -1,5 +1,6 @@
 <?php
 define('BASE_URL', '/2510333_AadityaAcharya');
+date_default_timezone_set('Asia/Kathmandu');
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +33,7 @@ define('BASE_URL', '/2510333_AadityaAcharya');
                 <a href="<?php echo htmlspecialchars(BASE_URL) ?>/public/user/controller/doctorSearchController.php">Doctors</a>
             <?php endif; ?>
 
-            <a href="<?php echo htmlspecialchars(BASE_URL) ?>/public/logout.php">Logout</a>
+            <a href="<?php echo htmlspecialchars(BASE_URL) ?>/public/logout.php" onclick="return confirm('Are You sure you want to logout?')">Logout</a>
         <?php endif; ?>
     </nav>
 </header>

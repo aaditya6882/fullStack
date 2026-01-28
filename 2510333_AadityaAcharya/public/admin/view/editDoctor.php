@@ -14,9 +14,9 @@ require '../../../includes/header.php';
     <input type="text" name="name" value="<?php echo htmlspecialchars($doctor['name']) ?>" required><br><br>
     <input type="text" name="specialization" value="<?php echo htmlspecialchars($doctor['specialization']) ?>"><br><br>
     <input type="text" name="phone" value="<?php echo htmlspecialchars($doctor['phone']) ?>"><br><br>
-    <button>Update Doctor</button>
+    <button class="btn">Update Doctor</button>
 </form>
-<a href="doctorController.php">Back</a>
+<a href="doctorController.php" class="btn" style="margin: 15px;">Back</a>
 </body>
 </html>
 

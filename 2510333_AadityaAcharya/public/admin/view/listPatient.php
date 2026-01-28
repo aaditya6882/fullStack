@@ -29,6 +29,7 @@ require '../../../includes/header.php';
         <td><?php echo htmlspecialchars($pat['email']) ?></td>
         <td><?php echo htmlspecialchars($pat['phone']) ?></td>
         <td class="actions">
+            <a class="btn-edit" href="patientController.php?action=edit&id=<?php echo htmlspecialchars($pat['patient_id']) ?>">Edit</a>
             <a class="btn-delete" href="patientController.php?action=delete&id=<?php echo htmlspecialchars($pat['patient_id']) ?>" onclick="return confirm('Delete patient?')">Delete</a>
         </td>
     </tr>

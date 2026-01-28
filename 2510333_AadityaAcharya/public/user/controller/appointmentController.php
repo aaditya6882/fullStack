@@ -1,6 +1,6 @@
 <?php
+require '../../../includes/session.php';
 require "../../../config/db.php";
-session_start();
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient') {
     header("Location: ../../login.php");
     exit;
@@ -32,7 +32,10 @@ if (isset($_GET['action']) && $_GET['action']=="book") {
         $end = $_POST['end'];
 
         if ($doctor && $date && $start && $end) {
-            if (!addAppointment($patientId, $doctor, $date, $start, $end)) {
+            $today = date('Y-m-d');
+            if ($date < $today) {
+                $error = "Cannot book an appointment for a past date";
+            } elseif (!addAppointment($patientId, $doctor, $date, $start, $end)) {
                 $error = "Time slot not available";
             } else {
                 header("Location: appointmentController.php");

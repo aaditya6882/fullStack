@@ -1,5 +1,5 @@
 <?php
-session_start();
+require '../../../includes/session.php';
 require "../../../config/db.php";
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
