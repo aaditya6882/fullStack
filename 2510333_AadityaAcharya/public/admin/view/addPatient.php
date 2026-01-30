@@ -24,7 +24,7 @@ require '../../../includes/header.php';
     <button class="btn">Add Patient</button>
 </form>
 </div>
-<a href="patientController.php" class="btn" style="margin: 15px;">Back</a>
+<a href="public/admin/controller/patientController.php" class="btn" style="margin: 15px;">Back</a>
 </body>
 </html>
 

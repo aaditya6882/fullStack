@@ -39,7 +39,7 @@ require  '../../../includes/header.php';
     <button class="btn">Book Appointment</button>
 </form>
 </div>
-<a href="appointmentController.php" class="btn" style="margin: 15px;">Back</a>
+<a href="public/user/controller/appointmentController.php" class="btn" style="margin: 15px;">Back</a>
 </body>
 </html>
 <?php

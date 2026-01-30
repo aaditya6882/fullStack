@@ -12,7 +12,7 @@ require '../../../includes/header.php';
     <div class="list-container">
     <div class="list-header">
         <h2 class="list-title">Doctors</h2>
-        <a class="btn btn-primary" href="doctorController.php?action=add">+ Add Doctor</a>
+        <a class="btn btn-primary" href="public/admin/controller/doctorController.php?action=add">+ Add Doctor</a>
     </div>
     <table class="data-table">
     <tr>
@@ -29,8 +29,8 @@ require '../../../includes/header.php';
         <td><?php echo htmlspecialchars($doc['specialization']) ?></td>
         <td><?php echo htmlspecialchars($doc['phone']) ?></td>
         <td class="actions">
-            <a class="btn-edit" href="doctorController.php?action=edit&id=<?php echo htmlspecialchars($doc['doctor_id']) ?>">Edit</a>
-            <a class="btn-delete" href="doctorController.php?action=delete&id=<?php echo htmlspecialchars($doc['doctor_id']) ?>" onclick="return confirm('Delete doctor?')">Delete</a>
+            <a class="btn-edit" href="public/admin/controller/doctorController.php?action=edit&id=<?php echo htmlspecialchars($doc['doctor_id']) ?>">Edit</a>
+            <a class="btn-delete" href="public/admin/controller/doctorController.php?action=delete&id=<?php echo htmlspecialchars($doc['doctor_id']) ?>" onclick="return confirm('Delete doctor?')">Delete</a>
         </td>
     </tr>
     <?php endforeach; ?>

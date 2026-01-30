@@ -1,5 +1,5 @@
 <?php
-require "../../../config/db.php";
+require_once "../../../config/db.php";
 function getAppointmentsByPatient($pid) {
     global $conn;
     $stmt = $conn->prepare("

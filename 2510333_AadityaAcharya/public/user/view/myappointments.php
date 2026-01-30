@@ -12,7 +12,7 @@ require '../../../includes/header.php';
     <div class="list-container">
 <div class="list-header">
     <h2 class="list-title">My Appointments</h2>
-    <a class="btn" href="appointmentController.php?action=book">+ Book Appointment</a>
+    <a class="btn" href="public/user/controller/appointmentController.php?action=book">+ Book Appointment</a>
 </div>
 <table class="data-table">
     <tr>
@@ -44,7 +44,7 @@ require '../../../includes/header.php';
         </td>
         <td class="actions">
             <?php if (!$isCompleted): ?>
-                <a class="btn-delete" href="appointmentController.php?action=delete&id=<?php echo htmlspecialchars($app['appointment_id']) ?>" onclick="return confirm('Cancel appointment?')">Cancel</a>
+                <a class="btn-delete" href="public/user/controller/appointmentController.php?action=delete&id=<?php echo htmlspecialchars($app['appointment_id']) ?>" onclick="return confirm('Cancel appointment?')">Cancel</a>
             <?php endif; ?>
         </td>
     </tr>

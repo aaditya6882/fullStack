@@ -21,7 +21,7 @@
     <button class="btn">Update</button>
     </form>
     </div>
-    <a href="patientController.php" class="btn" style="margin: 15px;">Back</a>
+    <a href="public/admin/controller/patientController.php" class="btn" style="margin: 15px;">Back</a>
 </body>
 </html>
 <?php require "../../../includes/footer.php"; ?>

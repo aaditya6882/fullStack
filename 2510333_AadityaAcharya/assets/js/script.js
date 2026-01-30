@@ -22,7 +22,7 @@ async function updateTime() {
 
   try {
     const res = await fetch(
-      `appointmentController.php?action=availability&doctor=${encodeURIComponent(doctor)}&date=${encodeURIComponent(date)}`,
+      `public/user/controller/appointmentController.php?action=availability&doctor=${encodeURIComponent(doctor)}&date=${encodeURIComponent(date)}`,
     );
     const data = await res.json();
     const booked = data.booked || [];

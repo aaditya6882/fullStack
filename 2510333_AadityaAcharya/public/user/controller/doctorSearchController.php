@@ -1,7 +1,7 @@
 <?php
-require '../../../includes/session.php';
-require "../../../config/db.php";
-require "../../admin/model/doctorModel.php";
+require_once '../../../includes/session.php';
+require_once "../../../config/db.php";
+require_once "../../admin/model/doctorModel.php";
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient') {
     header("Location: ../../login.php");

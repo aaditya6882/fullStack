@@ -16,7 +16,7 @@ require '../../../includes/header.php';
     <input type="text" name="phone" value="<?php echo htmlspecialchars($doctor['phone']) ?>"><br><br>
     <button class="btn">Update Doctor</button>
 </form>
-<a href="doctorController.php" class="btn" style="margin: 15px;">Back</a>
+<a href="public/admin/controller/doctorController.php" class="btn" style="margin: 15px;">Back</a>
 </body>
 </html>
 

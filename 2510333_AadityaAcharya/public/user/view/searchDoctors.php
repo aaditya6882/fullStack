@@ -12,7 +12,7 @@ require '../../../includes/header.php';
     <div class="list-container">
 <h2 class="list-title">Doctors</h2>
 
-<form method="GET" action="doctorSearchController.php" class="search-form">
+<form method="GET" action="public/user/controller/doctorSearchController.php" class="search-form">
     <input type="text" name="q" value="<?php echo htmlspecialchars($_GET['q'] ?? '') ?>" placeholder="Search by doctor name">
     <button type="submit" class="btn">Search</button>
 </form>

@@ -1,18 +1,18 @@
 <?php
-require '../../../includes/session.php';
-require "../../../config/db.php";
+require_once '../../../includes/session.php';
+require_once "../../../config/db.php";
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient') {
     header("Location: ../../login.php");
     exit;
 }
-require "../model/appointmentModel.php";
-require "../../admin/model/doctorModel.php";
+require_once "../model/appointmentModel.php";
+require_once "../../admin/model/doctorModel.php";
 
 $patientId = $_SESSION['patient_id'];
 
 if (!isset($_GET['action'])) {
     $appointments = getAppointmentsByPatient($patientId);
-    require '../view/myAppointments.php';
+    require '../view/myappointments.php';
 }
 
 if (isset($_GET['action']) && $_GET['action'] === 'availability') {

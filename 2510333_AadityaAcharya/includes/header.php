@@ -1,5 +1,5 @@
 <?php
-define('BASE_URL', '/2510333_AadityaAcharya');
+define('BASE_URL', '/~np03cs4a240186/2510333_AadityaAcharya');
 date_default_timezone_set('Asia/Kathmandu');
 ?>
 <!DOCTYPE html>
@@ -9,6 +9,7 @@ date_default_timezone_set('Asia/Kathmandu');
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<?php echo BASE_URL ?>/assets/css/style.css">
 <script src="<?php echo BASE_URL ?>/assets/js/script.js"></script>
+<base href="<?php echo BASE_URL ?>/">
 </head>
 <body>
 
@@ -23,17 +24,17 @@ date_default_timezone_set('Asia/Kathmandu');
         <?php if(isset($_SESSION['role'])): ?>
 
             <?php if($_SESSION['role'] === 'admin'): ?>
-                <a href="<?php echo htmlspecialchars(BASE_URL) ?>/public/admin/controller/dashboardController.php">Dashboard</a>
-                <a href="<?php echo htmlspecialchars(BASE_URL) ?>/public/admin/controller/doctorController.php">Doctors</a>
-                <a href="<?php echo htmlspecialchars(BASE_URL) ?>/public/admin/controller/patientController.php">Patients</a>
+                <a href="public/admin/controller/dashboardController.php">Dashboard</a>
+                <a href="public/admin/controller/doctorController.php">Doctors</a>
+                <a href="public/admin/controller/patientController.php">Patients</a>
             <?php endif; ?>
 
             <?php if($_SESSION['role'] === 'patient'): ?>
-                <a href="<?php echo htmlspecialchars(BASE_URL) ?>/public/user/controller/appointmentController.php">My Appointments</a>
-                <a href="<?php echo htmlspecialchars(BASE_URL) ?>/public/user/controller/doctorSearchController.php">Doctors</a>
+                <a href="public/user/controller/appointmentController.php">My Appointments</a>
+                <a href="public/user/controller/doctorSearchController.php">Doctors</a>
             <?php endif; ?>
 
-            <a href="<?php echo htmlspecialchars(BASE_URL) ?>/public/logout.php" onclick="return confirm('Are You sure you want to logout?')">Logout</a>
+            <a href="public/logout.php" onclick="return confirm('Are You sure you want to logout?')">Logout</a>
         <?php endif; ?>
     </nav>
 </header>
