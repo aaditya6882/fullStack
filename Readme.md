@@ -19,14 +19,14 @@
    - Web server
 
 2. **Database Setup:**
-   - Create a database named `ClinicalAppointmentSystem`.
+   - Create a database named `np03cs4a240186`.
    - Run `insert_admin.php` for the admin password in hashed and manually insert in the admin table.
    - Update database credentials in `config/db.php` if needed.
 
 ## How to Run the Application
 
 - If running locally, start your web server and open:
-  - `http://localhost/[foldername]/public/login.php`
+  - `http://localhost/2510333_AadityaAcharya/public/login.php`
 - If using the hosted version, open:
   - https://student.heraldcollege.edu.np/~np03cs4a240186/2510333_AadityaAcharya/public/login.php
 
