@@ -1,5 +1,5 @@
 <?php
-$server="mysql:host=localhost;dbname=ClinicalAppointmentSystem";
+$server="mysql:host=localhost;dbname=np03cs4a240186";
 $user = "root";
 $pass = "";
 
